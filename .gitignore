@@ -1,0 +1,16 @@
+# Vivado junk
+*.jou
+*.log
+*.str
+.Xil/
+vivado*.backup.jou
+vivado*.backup.log
+
+# Project outputs
+*.ipp
+*.tmp
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.cache/

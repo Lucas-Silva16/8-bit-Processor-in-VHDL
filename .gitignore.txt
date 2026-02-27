@@ -1,0 +1,18 @@
+# Ignorar ficheiros e diretórios gerados pelo Vivado
+*.jou
+*.log
+*.pb
+*.wdb
+*.str
+*.zip
+*.debug
+*.cache/
+*.hw/
+*.ip_user_files/
+*.runs/
+*.sim/
+*.srcs/sources_1/bd/*/ui/
+.Xil/
+
+# Ignorar o ficheiro real do projeto (vamos gerá-lo com Tcl)
+*.xpr

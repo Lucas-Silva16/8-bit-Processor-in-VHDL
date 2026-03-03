@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_ALU_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="tb_ALU" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="98.401 ns"></ZoomEndTime>
+      <Cursor1Time time="55.400 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="169"></NameColumnWidth>
+      <ValueColumnWidth column_width="167"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="5" />
+   <wvobject fp_name="/tb_ALU/Operando1" type="array">
+      <obj_property name="ElementShortName">Operando1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Operando1[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ALU/Operando2" type="array">
+      <obj_property name="ElementShortName">Operando2[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Operando2[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ALU/SEL_ALU" type="array">
+      <obj_property name="ElementShortName">SEL_ALU[3:0]</obj_property>
+      <obj_property name="ObjectShortName">SEL_ALU[3:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ALU/Resultado" type="array">
+      <obj_property name="ElementShortName">Resultado[7:0]</obj_property>
+      <obj_property name="ObjectShortName">Resultado[7:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_ALU/E_FLAG" type="array">
+      <obj_property name="ElementShortName">E_FLAG[4:0]</obj_property>
+      <obj_property name="ObjectShortName">E_FLAG[4:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+</wave_config>

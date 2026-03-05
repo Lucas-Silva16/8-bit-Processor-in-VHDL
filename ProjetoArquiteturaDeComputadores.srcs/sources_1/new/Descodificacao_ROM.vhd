@@ -47,34 +47,45 @@ architecture Behavioral of Descodificacao_ROM is
 signal controlo : std_logic_vector (15 downto 0);
 
 begin
-    with opcode select
-        controlo <=
-                    --ALU     P    DATA    R    WR     PC      F    SEL_F       OPCODE
-                    "0000" & "0" & "01" & "1" & "0" & "000" & "0" & "000" when "00000", -- LDP Ri
-                    "0000" & "1" & "00" & "0" & "0" & "000" & "0" & "000" when "00001", -- STP RA
-                    "0000" & "0" & "11" & "1" & "0" & "000" & "0" & "000" when "00010", -- LD Ri, constante
-                    "0000" & "0" & "10" & "1" & "0" & "000" & "0" & "000" when "00011", -- LD Ri, [constante]
-                    "0000" & "0" & "00" & "0" & "1" & "000" & "0" & "000" when "00100", -- ST [constante], RA
-                    "0000" & "0" & "00" & "1" & "0" & "000" & "0" & "000" when "00101", -- AND RA, RB
-                    "0001" & "0" & "00" & "1" & "0" & "000" & "0" & "000" when "00110", -- OR RA, RB
-                    "0010" & "0" & "00" & "1" & "0" & "000" & "0" & "000" when "00111", -- NAND RA, RB
-                    "0011" & "0" & "00" & "1" & "0" & "000" & "0" & "000" when "01000", -- NOR RA, RB
-                    "0100" & "0" & "00" & "1" & "0" & "000" & "0" & "000" when "01001", -- XOR RA, RB
-                    "0101" & "0" & "00" & "1" & "0" & "000" & "0" & "000" when "01010", -- SHR RA
-                    "0110" & "0" & "00" & "1" & "0" & "000" & "0" & "000" when "01011", -- SHL RA
-                    "0111" & "0" & "00" & "1" & "0" & "000" & "0" & "000" when "01100", -- ADD RA, RB
-                    "1000" & "0" & "00" & "1" & "0" & "000" & "0" & "000" when "01101", -- SUB RA, RB
-                    "1001" & "0" & "00" & "0" & "0" & "000" & "1" & "000" when "01110", -- CMP RA, RB
-                    "0000" & "0" & "00" & "0" & "0" & "011" & "0" & "000" when "01111", -- JZ RA, constante
-                    "0000" & "0" & "00" & "0" & "0" & "100" & "0" & "000" when "10000", -- JN RA, constante
-                    "0000" & "0" & "00" & "0" & "0" & "010" & "0" & "000" when "10001", -- JL constante
-                    "0000" & "0" & "00" & "0" & "0" & "010" & "0" & "001" when "10010", -- JLE constante
-                    "0000" & "0" & "00" & "0" & "0" & "010" & "0" & "010" when "10011", -- JE constante
-                    "0000" & "0" & "00" & "0" & "0" & "010" & "0" & "011" when "10100", -- JGE constante
-                    "0000" & "0" & "00" & "0" & "0" & "010" & "0" & "100" when "10101", -- JG constante
-                    "0000" & "0" & "00" & "0" & "0" & "001" & "0" & "000" when "10110", -- JMP constante
-                    "0000" & "0" & "00" & "0" & "0" & "000" & "0" & "000" when others;  -- NOP
-                    
+    process(Opcode)
+    begin
+        case Opcode is      
+            --                        |SEL_ALU|ESCR_p|SEL_DATA|ESCR_R|WR|SEL_PC|ESCR_F|SEL_F|
+            --Perifericos                  |      |      |      |     |    |      |      |
+            when "00000" => controlo <= "0000" & '0' & "01" & '1' & '0' & "000" & '0' & "000"; -- LDP Ri
+            when "00001" => controlo <= "0000" & '1' & "00" & '0' & '0' & "000" & '0' & "000"; -- STP RA
+            
+            --Leitura e Escrita
+            when "00010" => controlo <= "0000" & '0' & "11" & '1' & '0' & "000" & '0' & "000"; -- LD Ri, constante
+            when "00011" => controlo <= "0000" & '0' & "10" & '1' & '0' & "000" & '0' & "000"; -- LD Ri, [constante]
+            when "00100" => controlo <= "0000" & '0' & "00" & '0' & '1' & "000" & '0' & "000"; -- ST [constante], RA
+            
+            -- Lógica e Aritmética
+            when "00101" => controlo <= "0000" & '0' & "00" & '1' & '0' & "000" & '0' & "000"; -- AND RA, RB
+            when "00110" => controlo <= "0001" & '0' & "00" & '1' & '0' & "000" & '0' & "000"; -- OR RA, RB
+            when "00111" => controlo <= "0010" & '0' & "00" & '1' & '0' & "000" & '0' & "000"; -- NAND RA, RB
+            when "01000" => controlo <= "0011" & '0' & "00" & '1' & '0' & "000" & '0' & "000"; -- NOR RA, RB
+            when "01001" => controlo <= "0100" & '0' & "00" & '1' & '0' & "000" & '0' & "000"; -- XOR RA, RB
+            when "01010" => controlo <= "0101" & '0' & "00" & '1' & '0' & "000" & '0' & "000"; -- SHR RA
+            when "01011" => controlo <= "0110" & '0' & "00" & '1' & '0' & "000" & '0' & "000"; -- SHL RA
+            when "01100" => controlo <= "0111" & '0' & "00" & '1' & '0' & "000" & '0' & "000"; -- ADD RA, RB
+            when "01101" => controlo <= "1000" & '0' & "00" & '1' & '0' & "000" & '0' & "000"; -- SUB RA, RB
+            when "01110" => controlo <= "1001" & '0' & "00" & '0' & '0' & "000" & '1' & "000"; -- CMP RA, RB
+            
+            --saltos
+            when "01111" => controlo <= "0000" & '0' & "00" & '0' & '0' & "011" & '0' & "000"; -- JZ RA, constante
+            when "10000" => controlo <= "0000" & '0' & "00" & '0' & '0' & "100" & '0' & "000"; -- JN RA, constante
+            when "10001" => controlo <= "0000" & '0' & "00" & '0' & '0' & "010" & '0' & "000"; -- JL constante
+            when "10010" => controlo <= "0000" & '0' & "00" & '0' & '0' & "010" & '0' & "001"; -- JLE constante
+            when "10011" => controlo <= "0000" & '0' & "00" & '0' & '0' & "010" & '0' & "010"; -- JE constante
+            when "10100" => controlo <= "0000" & '0' & "00" & '0' & '0' & "010" & '0' & "011"; -- JGE constante
+            when "10101" => controlo <= "0000" & '0' & "00" & '0' & '0' & "010" & '0' & "100"; -- JG constante
+            when "10110" => controlo <= "0000" & '0' & "00" & '0' & '0' & "001" & '0' & "000"; -- JMP constante
+            
+            -- Default (Outros / NOP)
+            when others  => controlo <= "0000" & '0' & "00" & '0' & '0' & "000" & '0' & "000"; -- NOP
+        end case;
+    end process;    
 SEL_ALU <= controlo(15 downto 12);
 ESCR_P <= controlo (11);
 SEL_DATA <= controlo (10 downto 9);

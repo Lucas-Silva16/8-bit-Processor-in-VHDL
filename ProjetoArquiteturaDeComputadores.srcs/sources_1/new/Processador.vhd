@@ -18,7 +18,7 @@ entity Processador is
            POUT      : out STD_LOGIC_VECTOR (7 downto 0);
            opcode    : in STD_LOGIC_VECTOR (4 downto 0);
            Constante : in STD_LOGIC_VECTOR (7 downto 0);
-           SEL_R_in  : in STD_LOGIC; -- Vem da ROM (segundo a Secção 3 do enunciado)
+           SEL_R_in  : in STD_LOGIC; 
            Dados_M   : in STD_LOGIC_VECTOR (7 downto 0); 
            WR        : out STD_LOGIC;                    
            Endereco  : out STD_LOGIC_VECTOR (7 downto 0);
@@ -128,7 +128,7 @@ architecture Behavioral of Processador is
 
 begin
 
-inst_ALU : ALU
+s_ALU : ALU
     port map(
             Operando1 =>Operando1 ,
             Operando2 =>Operando2,
@@ -136,7 +136,7 @@ inst_ALU : ALU
             Resultado =>Resultado ,
             E_FLAG => E_FLAG
             );
-inst_Gestor_De_Perifericos : Gestor_De_Perifericos
+s_Gestor_De_Perifericos : Gestor_De_Perifericos
     port map ( ESCR_P =>ESCR_P,
                PIN =>PIN,
                POUT =>POUT,
@@ -144,7 +144,7 @@ inst_Gestor_De_Perifericos : Gestor_De_Perifericos
                Operando1 =>Operando1,
                Dados_IN =>Dados_IN
                );
-inst_MUX_Reg : MUX_Reg
+s_MUX_Reg : MUX_Reg
         port map ( 
                resultado =>resultado,
                Dados_IN  =>Dados_IN,
@@ -153,21 +153,21 @@ inst_MUX_Reg : MUX_Reg
                SEL_Data  =>SEL_Data,
                Dados_Regs  =>Dados_R
                );
-inst_PC : ProgramCounter 
+s_PC : ProgramCounter 
         port map ( Constante =>Constante,
                ESCR_PC =>ESCR_PC,
                CLK =>CLK,
                Reset =>Reset,
                Endereco =>Endereco
                ); 
-inst_RF : REGISTO_FLAGS 
+s_RF : REGISTO_FLAGS 
         port map ( CLK  =>CLK,
                E_FLAG  =>E_FLAG,
                ESCR_FLAG  =>ESCR_FLAG,
                SEL_FLAG => SEL_FLAG,
                S_FLAG =>  S_FLAG
                );                       
-inst_R_AB : Registos_A_e_B 
+s_R_AB : Registos_A_e_B 
         port map ( CLK =>CLK,
                ESCR_R =>ESCR_R,
                Dados_R =>Dados_R,
@@ -175,7 +175,7 @@ inst_R_AB : Registos_A_e_B
                Operando1 =>Operando1,
                Operando2 =>Operando2
                );    
-inst_DROM : Descodificacao_ROM 
+s_DROM : Descodificacao_ROM 
         port map ( Opcode  =>Opcode,
                SEL_ALU =>SEL_ALU,
                ESCR_P  =>ESCR_P,
@@ -188,7 +188,7 @@ inst_DROM : Descodificacao_ROM
                );
 
     
-inst_MUXPC : MUX_PC 
+s_MUXPC : MUX_PC 
         port map ( 
            S_FLAG   =>S_FLAG,
            Operando1   =>Operando1,

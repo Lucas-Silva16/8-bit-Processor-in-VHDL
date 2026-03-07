@@ -35,7 +35,8 @@ entity ROM_Memoria_Instrucoes is
     Port ( Endereco : in STD_LOGIC_VECTOR (7 downto 0);
            opcode : out STD_LOGIC_VECTOR (4 downto 0);
            SEL_R : out STD_LOGIC;
-           Constante : out STD_LOGIC_VECTOR (7 downto 0));
+           Constante : out STD_LOGIC_VECTOR (7 downto 0)
+           );
 end ROM_Memoria_Instrucoes;
 
 architecture Behavioral of ROM_Memoria_Instrucoes is

@@ -6,7 +6,7 @@ entity tb_Descodificacao_ROM is
 -- Um testbench não tem portos de entrada/saída, a entidade fica vazia.
 end tb_Descodificacao_ROM;
 
-architecture behavior of tb_Descodificacao_ROM is
+architecture Behavioral of tb_Descodificacao_ROM is
 
     -- Declaração do componente a ser testado (DUT - Device Under Test)
     component Descodificacao_ROM
@@ -68,4 +68,4 @@ begin
         wait;
     end process;
 
-end behavior;
+end Behavioral;

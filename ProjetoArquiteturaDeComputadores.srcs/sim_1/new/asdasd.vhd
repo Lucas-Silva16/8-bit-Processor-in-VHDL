@@ -6,7 +6,7 @@ entity tb_RAM is
 -- O testbench não tem portos
 end tb_RAM;
 
-architecture behavior of tb_RAM is
+architecture Behavioral of tb_RAM is
 
     -- Declaração do componente RAM
     component RAM
@@ -97,4 +97,4 @@ begin
         wait;
     end process;
 
-end behavior;
+end Behavioral;

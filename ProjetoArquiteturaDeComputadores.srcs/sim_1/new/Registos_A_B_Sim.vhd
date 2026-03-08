@@ -5,7 +5,7 @@ entity tb_Registos_A_e_B is
 
 end tb_Registos_A_e_B;
 
-architecture behavior of tb_Registos_A_e_B is
+architecture Behavioral of tb_Registos_A_e_B is
 
     component Registos_A_e_B
     Port ( 
@@ -81,4 +81,4 @@ begin
         wait;
     end process;
 
-end behavior;
+end Behavioral;

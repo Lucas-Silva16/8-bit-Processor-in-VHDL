@@ -14,7 +14,7 @@ entity PerifericosSim is
 
 end PerifericosSim;
 
-architecture behavior of PerifericosSim is
+architecture Behavioral of PerifericosSim is
 
     component Gestor_De_Perifericos
     Port ( 
@@ -92,4 +92,4 @@ begin
         wait;
     end process;
 
-end behavior;
+end Behavioral;

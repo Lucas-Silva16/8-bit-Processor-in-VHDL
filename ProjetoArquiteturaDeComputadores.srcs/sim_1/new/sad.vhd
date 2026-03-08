@@ -6,7 +6,7 @@ entity tb_ROM_Memoria_Instrucoes is
 -- Um testbench não tem portos de entrada/saída
 end tb_ROM_Memoria_Instrucoes;
 
-architecture behavior of tb_ROM_Memoria_Instrucoes is
+architecture Behavioral of tb_ROM_Memoria_Instrucoes is
 
     -- Declaração do componente a testar (DUT)
     component ROM_Memoria_Instrucoes
@@ -56,4 +56,4 @@ begin
         wait;
     end process;
 
-end behavior;
+end Behavioral;

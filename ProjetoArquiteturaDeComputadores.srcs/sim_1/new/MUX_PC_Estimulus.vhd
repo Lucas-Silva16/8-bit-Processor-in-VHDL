@@ -5,7 +5,7 @@ entity tb_MUX_PC is
 -- Entidade vazia, como é habitual nos testbenches
 end tb_MUX_PC;
 
-architecture behavior of tb_MUX_PC is
+architecture Behavioral of tb_MUX_PC is
 
     -- Declaração do componente que vamos testar
     component MUX_PC
@@ -88,4 +88,4 @@ begin
         wait;
     end process;
 
-end behavior;
+end Behavioral;

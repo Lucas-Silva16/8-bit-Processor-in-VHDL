@@ -6,7 +6,7 @@ entity tb_ProgramCounter is
 -- O testbench não tem portos de entrada/saída
 end tb_ProgramCounter;
 
-architecture behavior of tb_ProgramCounter is
+architecture Behavioral of tb_ProgramCounter is
 
     -- Declaração do componente ProgramCounter (DUT)
     component ProgramCounter
@@ -85,4 +85,4 @@ begin
         wait;
     end process;
 
-end behavior;
+end Behavioral;

@@ -45,7 +45,7 @@ A validação foi feita através de três rotinas principais no Testbench:
 | **Lógica e Negativos** | Teste com valor "-16" e operações `XOR`. | Validação de complemento para dois e cálculo de valor absoluto. |
 | **Acesso a RAM e Shifts** | Contagem de bits "1" num valor (ex: 60 -> `00111100`). | Uso de `ST`/`LD` na RAM e `SHR`. Saída exata de 4. |
 
-> **Nota:** As formas de onda da simulação confirmaram a integridade síncrona do relógio e da lógica de descodificação.
+> **Nota:** As formas de onda da simulação podem ser visualizadas no relatorio.
 
 ---
 

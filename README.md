@@ -4,7 +4,7 @@
 ![Tools](https://img.shields.io/badge/Tools-Vivado_ML_Edition-blue)
 ![Hardware](https://img.shields.io/badge/Hardware-Artix--7_NEXYS_A7-red)
 
-## 📝 Introdução
+##  Introdução
 Este projeto descreve o desenvolvimento e implementação de um **processador básico de 8 bits**, utilizando a linguagem de descrição de hardware **VHDL**. O trabalho foi realizado no âmbito da unidade curricular de **Arquitetura de Computadores** (Faculdade de Ciências Exatas e da Engenharia).
 
 O projeto aborda desde a criação dos blocos lógicos fundamentais até à sua integração final e configuração física numa FPGA **Artix-7 (NEXYS A7/4 DDR)**, utilizando a ferramenta **Vivado ML Edition**.

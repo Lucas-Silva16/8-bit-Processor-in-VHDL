@@ -1,133 +1,67 @@
-#  Processador de 8 bits em VHDL
-
-
+# 8-Bit Processor in VHDL
 
 ![VHDL](https://img.shields.io/badge/Language-VHDL-orange)
-
 ![Tools](https://img.shields.io/badge/Tools-Vivado_ML_Edition-blue)
-
 ![Hardware](https://img.shields.io/badge/Hardware-Artix--7_NEXYS_A7-red)
 
+## Introduction
+This project describes the development and implementation of a basic **8-bit processor** using the **VHDL** hardware description language. The work was carried out as part of the **Computer Architecture** course at the University of Madeira.
 
-
-##  Introdução
-
-Este projeto descreve o desenvolvimento e implementação de um **processador básico de 8 bits**, utilizando a linguagem de descrição de hardware **VHDL**. O trabalho foi realizado no âmbito da unidade curricular de **Arquitetura de Computadores** (Faculdade de Ciências Exatas e da Engenharia).
-
-
-
-O projeto aborda desde a criação dos blocos lógicos fundamentais até à sua integração final e configuração física numa FPGA **Artix-7 (NEXYS A7/4 DDR)**, utilizando a ferramenta **Vivado ML Edition**.
-
-
+The project covers everything from the creation of fundamental logic blocks to their final integration and physical configuration on an **Artix-7 (NEXYS A7/4 DDR)** FPGA, using the **Vivado ML Edition** design suite.
 
 ---
 
-
-
-##  Objetivos
-
-* **Conceção:** Criar um processador capaz de executar um conjunto específico de instruções.
-
-* **Modelação:** Desenhar módulos internos como ALU, Registos, PC e Descodificador.
-
-* **Integração:** Desenvolver a estrutura *Top-Level* (Motherboard) interligando Processador, ROM (Instruções) e RAM (Dados).
-
-* **Validação:** Testar a arquitetura através de simulações (*Testbench*) e mapeamento de periféricos físicos (PIN/POUT).
-
-
+## Objectives
+* **Design:** Create a processor capable of executing a specific instruction set.
+* **Modeling:** Design internal modules such as the ALU, Registers, Program Counter (PC), and Decoder.
+* **Integration:** Develop the *Top-Level* structure (Motherboard) interconnecting the Processor, ROM (Instructions), and RAM (Data).
+* **Validation:** Test the architecture through simulations (*Testbench*) and physical peripheral mapping (PIN/POUT).
 
 ---
 
+## System Architecture
 
+### 1. The Processor (Core)
+The core of the system is composed of the following essential modules:
+* **Arithmetic Logic Unit (ALU):** Processes 8-bit operands in 2's complement. Executes arithmetic (addition, subtraction), logical (AND, OR, XOR), and shift (SHR, SHL) operations.
+* **Registers:** Includes two general-purpose registers (A and B) and a Flags register for conditional flow control.
+* **Flow Control:** The Program Counter (PC) manages ROM addresses, allowing sequential increments or jumps (`JMP`, `JZ`, `JL`).
+* **Decoder:** The "brain" that interprets 5-bit opcodes and activates the necessary control signals.
+* **Peripheral Manager:** Manages input (PIN) and output (POUT) communication.
 
-##  Arquitetura do Sistema
-
-
-
-### 1. O Processador (Core)
-
-O núcleo do sistema é composto pelos seguintes módulos essenciais:
-
-* **Unidade Aritmética e Lógica (ALU):** Processa operandos de 8 bits em complemento para dois. Executa operações aritméticas (soma, subtração), lógicas (AND, OR, XOR) e deslocamentos (SHR, SHL).
-
-* **Registos:** Inclui dois registos de uso geral (A e B) e um registo de Flags para controlo de fluxos condicionais.
-
-* **Flow Control:** O Contador de Programa (PC) gere os endereços da ROM, permitindo incrementos sequenciais ou saltos (`JMP`, `JZ`, `JL`).
-
-* **Descodificador:** O "cérebro" que interpreta opcodes de 5 bits e ativa os sinais de controlo necessários.
-
-* **Gestor de Periféricos:** Gere a comunicação de entrada (PIN) e saída (POUT).
-
-
-
-### 2. Placa-Mãe (Integração Estrutural)
-
-A nível superior, o processador é instanciado com:
-
-* **ROM:** Memória de instruções com palavras de 14 bits.
-
-* **RAM:** Memória de dados para persistência e variáveis temporárias.
-
-
+### 2. Motherboard (Structural Integration)
+At the top level, the processor is instantiated with:
+* **ROM:** Instruction memory with 14-bit words.
+* **RAM:** Data memory for persistence and temporary variables.
 
 ---
 
+## Results and Discussion
+Validation was performed through three main routines in the Testbench:
 
-
-##  Resultados e Discussão
-
-A validação foi feita através de três rotinas principais no Testbench:
-
-
-
-| Rotina | Descrição | Resultado Esperado |
-
+| Routine | Description | Expected Result |
 | :--- | :--- | :--- |
+| **Arithmetic and Loops** | Input of value "5" and execution of successive additions. | Output (POUT) correctly stopped at 50 via `JL` jumps. |
+| **Logic and Negatives** | Test with value "-16" and `XOR` operations. | Validation of 2's complement logic and absolute value calculation. |
+| **RAM Access and Shifts** | Counting "1" bits in a value (e.g., 60 -> `00111100`). | Use of `ST`/`LD` in RAM and `SHR`. Exact output of 4. |
 
-| **Aritmética e Ciclos** | Introdução de valor "5" e execução de somas sucessivas. | Saída (POUT) parou corretamente em 50 via saltos `JL`. |
-
-| **Lógica e Negativos** | Teste com valor "-16" e operações `XOR`. | Validação de complemento para dois e cálculo de valor absoluto. |
-
-| **Acesso a RAM e Shifts** | Contagem de bits "1" num valor (ex: 60 -> `00111100`). | Uso de `ST`/`LD` na RAM e `SHR`. Saída exata de 4. |
-
-
-
-> **Nota:** As formas de onda da simulação podem ser visualizadas no relatorio no anexo A.
-
-
+> **Note:** Simulation waveforms validating these operations can be viewed in the report in Annex A.
 
 ---
 
-
-
-##  Tecnologias Utilizadas
-
-* **Linguagem:** VHDL
-
-* **Ambiente de Desenvolvimento:** Xilinx Vivado ML Edition
-
-* **Hardware:** FPGA Artix-7 (Nexys A7-100T ou A7-50T)
-
-
+## Technologies Used
+* **Language:** VHDL
+* **Development Environment:** Xilinx Vivado ML Edition
+* **Hardware:** Artix-7 FPGA (Nexys A7-100T or A7-50T)
 
 ---
 
-
-
-##  Estrutura de Ficheiros
-
-* `/src`: Ficheiros fonte VHDL.
-
-* `/sim`: Testbenches e ficheiros de simulação.
-
-* `/docs`: Documentação adicional e diagramas.
-
-
+## File Structure
+* `/src`: VHDL source files.
+* `/sim`: Testbenches and simulation configuration files.
+* `/docs`: Additional documentation and structural diagrams.
 
 ---
 
-
-
-## 🎓 Conclusão
-
-O projeto consolidou conceitos de hardware modular e hierárquico. A abstração de blocos permitiu focar no encaminhamento de dados, resultando num sistema 100% funcional, capaz de manipular memória RAM e operações aritméticas complexas dentro das restrições de uma FPGA.
+## Conclusion
+This project consolidated modular and hierarchical hardware design concepts. The abstraction of blocks allowed for a focus on data routing, resulting in a fully functional system capable of manipulating RAM and executing complex arithmetic operations within the constraints of an FPGA.

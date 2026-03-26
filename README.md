@@ -57,9 +57,9 @@ Validation was performed through three main routines in the Testbench:
 ---
 
 ## File Structure
-* `/src`: VHDL source files.
-* `/sim`: Testbenches and simulation configuration files.
-* `/docs`: Additional documentation and structural diagrams.
+* `/src`: VHDL source files
+* `/sim`: Testbenches and simulation configuration files
+* `/docs`: Additional documentation and structural diagrams
 
 ---
 
